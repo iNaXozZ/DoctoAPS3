@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">           
+{% endblock %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <h2>Vous cherchez à avoir un rendez-vous ? Inscrivez-vous, c'est ici !</h2>
+    <br>
+    <h3><center>Formulaire d'inscription d'un Patient</center></h3>
+    <br>
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.nom) }}
+        {{ form_row(registrationForm.prenom) }}
+        {{ form_row(registrationForm.sexe) }}
+        {{ form_row(registrationForm.numero_telephone) }}
+        <br>
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Password'
+        }) }}
+        {{ form_row(registrationForm.agreeTerms) }}
+
+        <button type="submit" class="btn-primary">S'inscrire</button>
+    {{ form_end(registrationForm) }}
+{% endblock %}
