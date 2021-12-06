@@ -11,7 +11,7 @@
 
         {% block nav %}
         <nav class="navbar navbar-expand-sm navbar-light bg-primary">
-            <a class="navbar-brand" href="#">DoctoAPS3</a>
+            <a class="navbar-brand" href="{{path('connect')}}">DoctoAPS3</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -26,6 +26,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{path('app_logout')}}">Se déconnecter</a>
                 </li>
+                
                 <li class="nav-item">
                     <a class="nav-link" href="#">Prendre Rendez-Vous</a>
                 </li>

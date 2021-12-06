@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Calendrier{% endblock %}
+
+{% block body %}
+<div class="col-12">
+          <table class="table">
+            <thead>
+              <tr>
+              {% for lejour in lesjours %}
+                <th class="text-dark text-left">{{ lejour|format_datetime('full', 'none', locale='fr')  }} </th>
+                
+              {% endfor %}  
+              </tr>
+            </thead>
+            <tbody>
+               {% for lheure in lesheures %}
+              <tr>
+              
+              {% for lejour in lesjours %} 
+           
+                <td><a href="/gestionConsultation/{{ lejour|date("d/m/Y") }}/{{ lheure|format_datetime('none', 'short', locale='fr') }}">{{ lheure|format_datetime('none', 'short', locale='fr')  }} H</a></td>
+           
+             {% endfor %} 
+                
+              </tr>
+             {% endfor %}  
+            </tbody>
+          </table>
+        </div>
+{% endblock %}

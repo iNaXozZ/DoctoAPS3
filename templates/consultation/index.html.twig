@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ConsultationController!{% endblock %}
+
+{% block body %}
+
+
+
+
+<div class="row mx-lg-4">
+        <div class="col-md-12">
+            <h2 class="text-center text-uppercase">Obtenir un rendez-vous</h2><br>
+            {{ form_start(ConsultationForm) }}
+            <div class="container-connexion">
+                <div class="card-connexion">
+                    <div class="card-connexion2">
+                            <label for="inputEmail">Quet est le type de consultation ?</label>
+                            {{ form_widget(ConsultationForm.typeConsultation, {'attr': {'placeholder': '','class' : 'form-control col-mx-4 mb-3'}}) }}
+                            <span class="error">{{ form_errors(ConsultationForm.typeConsultation) }}</span>
+
+                            <label for="inputEmail">Motif de la consultation</label>
+                            {{ form_widget(ConsultationForm.motifConsultation, {'attr': {'placeholder': '','class' : 'form-control col-mx-4 mb-3'}}) }}
+                            <span class="error">{{ form_errors(ConsultationForm.motifConsultation) }}</span>
+
+                            <label for="inputPrenom">Tarif de la consultation</label>
+                            {{ form_widget(ConsultationForm.tarifConsultation, {'attr': {'placeholder': '','class' : 'form-control col-mx-4 mb-3'}}) }}
+                            <span class="error">{{ form_errors(ConsultationForm.tarifConsultation) }}</span>
+
+                            <label for="inputPrenom">Votre moyen de paiement</label>
+                            {{ form_widget(ConsultationForm.moyenPaiement, {'attr': {'placeholder': '','class' : 'form-control col-mx-4 mb-3'}}) }}
+                            <span class="error">{{ form_errors(ConsultationForm.moyenPaiement) }}</span>
+
+                            <label for="inputnumtel">Choisissez un Professionnel</label>
+                            {{ form_widget(ConsultationForm.leProfessionnel, {'attr': {'placeholder': '','class' : 'form-control col-mx-4 mb-3'}}) }}
+                            <span class="error">{{ form_errors(ConsultationForm.leProfessionnel) }}</span>
+
+                            <label for="inputnumtel">Vous êtes ?</label>
+                            {{ form_widget(ConsultationForm.lePatient, {'attr': {'placeholder': '','class' : 'form-control col-mx-4 mb-3'}}) }}
+                            <span class="error">{{ form_errors(ConsultationForm.lePatient) }}</span>
+                            
+
+                        <div class="col text-center">
+                            <input type="submit" name="" class="btn btn-primary" value="Obtenir Rendez-vous">
+                        </div><br>
+                    </div>
+                </div>
+            </div>
+            {{ form_end(ConsultationForm) }}
+        </div>
+    </div>
+{% endblock %}

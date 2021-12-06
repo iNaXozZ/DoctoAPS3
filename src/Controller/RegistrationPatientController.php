@@ -20,7 +20,7 @@ class RegistrationPatientController extends AbstractController
     {
         $user = new Patient();
         $user->setRoles(['ROLE_PATIENT']);
-        $date= new \DateTime('02/11/1999');
+        $date= new \DateTime('Now');
         $user->setDateNaissance($date);
        
 
