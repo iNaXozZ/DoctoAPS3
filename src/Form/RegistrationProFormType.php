@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use App\Entity\Etablissement;
+use App\Entity\Langue;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Validator\Constraints\IsTrue;
@@ -27,12 +28,16 @@ class RegistrationProFormType extends AbstractType
             ->add('numeroTelephone')
             ->add('typeProfession')
             ->add('presentation')
-            ->add('languesParlees')
             ->add('lEtablissement' , EntityType::class, array(  
                 'class'=>Etablissement::class,
                 'choice_label' =>'nomEtablissement',
-                'multiple'=>false )
-            )
+                'multiple'=>false ))
+            ->add('lesLangues', EntityType::class, array(  
+                'class'=>Langue::class,
+                'choice_label' =>'libelleLangue',
+                'multiple'=>true,
+                
+                ))
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
@@ -58,7 +63,6 @@ class RegistrationProFormType extends AbstractType
                     ]),
                 ],
             ])
-            
         ;
     }
 

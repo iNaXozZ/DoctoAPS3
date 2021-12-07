@@ -32,10 +32,7 @@ class Consultation
      */
     private $tarifConsultation;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $moyenPaiement;
+    
 
     /**
      * @ORM\ManyToOne(targetEntity=ProfessionnelDeSante::class, inversedBy="lesConsultations")
@@ -51,6 +48,11 @@ class Consultation
      * @ORM\ManyToOne(targetEntity=Patient::class, inversedBy="lesConsultations")
      */
     private $lePatient;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Paiement::class, inversedBy="lesConsultations",cascade={"persist"})
+     */
+    private $leMoyenPaiement;
 
     public function getId(): ?int
     {
@@ -93,17 +95,7 @@ class Consultation
         return $this;
     }
 
-    public function getMoyenPaiement(): ?string
-    {
-        return $this->moyenPaiement;
-    }
-
-    public function setMoyenPaiement(string $moyenPaiement): self
-    {
-        $this->moyenPaiement = $moyenPaiement;
-
-        return $this;
-    }
+    
 
     public function getLeProfessionnel(): ?ProfessionnelDeSante
     {
@@ -137,6 +129,18 @@ class Consultation
     public function setLePatient(?Patient $lePatient): self
     {
         $this->lePatient = $lePatient;
+
+        return $this;
+    }
+
+    public function getLeMoyenPaiement(): ?Paiement
+    {
+        return $this->leMoyenPaiement;
+    }
+
+    public function setLeMoyenPaiement(?Paiement $leMoyenPaiement): self
+    {
+        $this->leMoyenPaiement = $leMoyenPaiement;
 
         return $this;
     }

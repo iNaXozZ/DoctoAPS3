@@ -11,6 +11,8 @@ use App\Entity\Diplome;
 use App\Entity\Experience;
 use App\Entity\Patient;
 use App\Entity\Consultation;
+use App\Entity\Langue;
+use App\Entity\Paiement;
 
 class AppFixtures extends Fixture
 {
@@ -21,6 +23,28 @@ class AppFixtures extends Fixture
     }
     public function load(ObjectManager $manager)
     {
+         //Création des langues
+        //Création de la langue "Français"
+        $langue= new Langue();
+        $langue->setLibelleLangue('Français');
+        //Création de la langue "Anglais"
+        $langue1= new Langue();
+        $langue1->setLibelleLangue('Anglais');
+        //Création de la langue "Allemand"
+        $langue2= new Langue();
+        $langue2->setLibelleLangue('Allemand');
+        //Création de la langue "Espagnol"
+        $langue3= new Langue();
+        $langue3->setLibelleLangue('Espagnol');
+
+        //Création des MoyenDePaiement
+        //Création du moyen de paiement "Carte"
+        $moyen=new Paiement();
+        $moyen->setLibellePaiement('Carte');
+        //Création du moyen de paiement "Espèce"
+        $moyen1=new Paiement();
+        $moyen1->setLibellePaiement('Espèce');
+
         //Création de l'établissement 1 Hopital Lannion
         $etablissement = new Etablissement();
         $etablissement->setTypeEtablissement('Hopital ');
@@ -30,7 +54,7 @@ class AppFixtures extends Fixture
 
         $manager->persist($etablissement);
         $manager->flush();
-        
+      
         //Affectation de la variable $lEtablissement à la variable $etablissement contenant l'object Etablissement Hopital Lannion
         $lEtablissement=$etablissement;
         
@@ -47,7 +71,10 @@ class AppFixtures extends Fixture
         $professionel->setNumeroTelephone('0202020202');
         $professionel->setTypeProfession('Médecin');
         $professionel->setPresentation('Bonjour, je suis votre médecin préféré');
-        $professionel->setLanguesParlees('Français, Anglais, Allemand');
+        //Affectation des langues parlées
+        $professionel->addLesLangue($langue);
+        $professionel->addLesLangue($langue1);
+        $professionel->addLesLangue($langue2);
         //Affectation de la Variable lEtablissement contenant l'objet Etablissement 
         $professionel->setLEtablissement($lEtablissement);
         $manager->persist($professionel);
@@ -89,7 +116,9 @@ class AppFixtures extends Fixture
         $professionel3->setNumeroTelephone('0645454123');
         $professionel3->setTypeProfession('Infirmière');
         $professionel3->setPresentation('Bonjour, je suis votre infirmière préférée');
-        $professionel3->setLanguesParlees('Français, Anglais');
+        //Affectation des langues parlées
+        $professionel3->addLesLangue($langue);
+        $professionel3->addLesLangue($langue1);
         //Affectation de la Variable lEtablissement contenant l'objet Etablissement 
         $professionel3->setLEtablissement($lEtablissement);
         $manager->persist($professionel3);
@@ -144,7 +173,10 @@ class AppFixtures extends Fixture
         $professionel2->setNumeroTelephone('0202020202');
         $professionel2->setTypeProfession('Dentiste');
         $professionel2->setPresentation('Bonjour, je suis votre Dentiste préféré');
-        $professionel2->setLanguesParlees('Français, Anglais, Allemand');
+        //Affectation des langues parlées
+        $professionel2->addLesLangue($langue);
+        $professionel2->addLesLangue($langue1);
+        $professionel2->addLesLangue($langue2);
         //Affectation de la Variable lEtablissement contenant l'objet Etablissement 
         $professionel2->setLEtablissement($lEtablissement2);
 
@@ -209,7 +241,7 @@ class AppFixtures extends Fixture
         $consultation1-> setTypeConsultation('Consultation Maladie');
         $consultation1->setMotifConsultation("Soupçon d'un début d'angine");
         $consultation1->setTarifConsultation("25€");
-        $consultation1->setMoyenPaiement("Sur place");
+        $consultation1->setLeMoyenPaiement($moyen);
         $consultation1->setLeProfessionnel($leProfessionnel);
         $consultation1->setLEtablissement($etablissement);
         $consultation1->setLePatient($patient);
@@ -238,7 +270,7 @@ class AppFixtures extends Fixture
          $consultation2-> setTypeConsultation('Consultation analyse dentition');
          $consultation2->setMotifConsultation("Check de ma dentition");
          $consultation2->setTarifConsultation("32€");
-         $consultation2->setMoyenPaiement("Par carte");
+         $consultation2->setLeMoyenPaiement($moyen1);
          $consultation2->setLeProfessionnel($leProfessionnel2);
          $consultation2->setLEtablissement($etablissement2);
          $consultation2->setLePatient($patient3);

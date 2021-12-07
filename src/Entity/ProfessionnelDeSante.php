@@ -29,10 +29,7 @@ class ProfessionnelDeSante extends User
      */
     private $presentation;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $languesParlees;
+    
 
     /**
      * @ORM\OneToMany(targetEntity=Diplome::class, mappedBy="leProfessionnel")
@@ -54,11 +51,17 @@ class ProfessionnelDeSante extends User
      */
     private $lesConsultations;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Langue::class, inversedBy="lesProfessionnels",cascade={"persist"})
+     */
+    private $lesLangues;
+
     public function __construct()
     {
         $this->lesDiplomes = new ArrayCollection();
         $this->lesExperiences = new ArrayCollection();
         $this->lesConsultations = new ArrayCollection();
+        $this->lesLangues = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -90,17 +93,7 @@ class ProfessionnelDeSante extends User
         return $this;
     }
 
-    public function getLanguesParlees(): ?string
-    {
-        return $this->languesParlees;
-    }
-
-    public function setLanguesParlees(string $languesParlees): self
-    {
-        $this->languesParlees = $languesParlees;
-
-        return $this;
-    }
+    
 
     /**
      * @return Collection|Diplome[]
@@ -200,6 +193,30 @@ class ProfessionnelDeSante extends User
                 $lesConsultation->setLeProfessionnel(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Langue[]
+     */
+    public function getLesLangues(): Collection
+    {
+        return $this->lesLangues;
+    }
+
+    public function addLesLangue(Langue $lesLangue): self
+    {
+        if (!$this->lesLangues->contains($lesLangue)) {
+            $this->lesLangues[] = $lesLangue;
+        }
+
+        return $this;
+    }
+
+    public function removeLesLangue(Langue $lesLangue): self
+    {
+        $this->lesLangues->removeElement($lesLangue);
 
         return $this;
     }

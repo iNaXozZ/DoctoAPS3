@@ -27,8 +27,8 @@
                             <span class="error">{{ form_errors(ConsultationForm.tarifConsultation) }}</span>
 
                             <label for="inputPrenom">Votre moyen de paiement</label>
-                            {{ form_widget(ConsultationForm.moyenPaiement, {'attr': {'placeholder': '','class' : 'form-control col-mx-4 mb-3'}}) }}
-                            <span class="error">{{ form_errors(ConsultationForm.moyenPaiement) }}</span>
+                            {{ form_widget(ConsultationForm.leMoyenPaiement, {'attr': {'placeholder': '','class' : 'form-control col-mx-4 mb-3'}}) }}
+                            <span class="error">{{ form_errors(ConsultationForm.leMoyenPaiement) }}</span>
 
                             <label for="inputnumtel">Choisissez un Professionnel</label>
                             {{ form_widget(ConsultationForm.leProfessionnel, {'attr': {'placeholder': '','class' : 'form-control col-mx-4 mb-3'}}) }}
