@@ -20,10 +20,6 @@ class RegistrationPatientController extends AbstractController
     {
         $user = new Patient();
         $user->setRoles(['ROLE_PATIENT']);
-        $date= new \DateTime('Now');
-        $user->setDateNaissance($date);
-       
-
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 

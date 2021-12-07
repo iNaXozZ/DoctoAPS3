@@ -36,6 +36,10 @@
                             {{ form_widget(registrationForm.sexe, {'attr': {'placeholder': '','class' : 'form-control col-mx-4 mb-3'}}) }}
                             <span class="error">{{ form_errors(registrationForm.sexe) }}</span>
 
+                             <label for="inputnumtel">Votre date de naissance</label>
+                            {{ form_widget(registrationForm.dateNaissance, {'attr': {'placeholder': '','class' : 'form-control col-mx-4 mb-3'}}) }}
+                            <span class="error">{{ form_errors(registrationForm.dateNaissance) }}</span>
+
                             <label for="inputnumtel">Numero de telephone</label>
                             {{ form_widget(registrationForm.numero_telephone, {'attr': {'placeholder': '','class' : 'form-control col-mx-4 mb-3'}}) }}
                             <span class="error">{{ form_errors(registrationForm.numero_telephone) }}</span>

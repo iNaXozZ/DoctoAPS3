@@ -23,11 +23,6 @@ class ConsultationFormType extends AbstractType
                 'class'=>ProfessionnelDeSante::class,
                 'choice_label' =>'nom',
                 'multiple'=>false ))
-            
-            ->add('lePatient', EntityType::class, array(  
-                'class'=>Patient::class,
-                'choice_label' =>'nom',
-                'multiple'=>false ))
             ->add('leMoyenPaiement', EntityType::class, array(  
                 'class'=>Paiement::class,
                 'choice_label' =>'libellePaiement',
