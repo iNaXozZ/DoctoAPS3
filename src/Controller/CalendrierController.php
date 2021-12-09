@@ -2,32 +2,38 @@
 
 namespace App\Controller;
 
-use App\Entity\Planning;
-use App\Repository\PlanningRepository;
+
+use App\Entity\PlanningPro;
+use App\Entity\ProfessionnelDeSante;
+use App\Repository\PlanningProRepository;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Mapping\Id;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Security;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class CalendrierController extends AbstractController
 {
     
+    
     /**
-     * @Route("/calendrier", name="calendrier")
+     * @Route("/connect/planning/{id}", name="planning")
      */
-    public function construction(PlanningRepository $PlanningRepository,EntityManagerInterface $manager): Response
+    public function construction($id): Response
     {
-        $planning = new Planning();
-        $planning->CreationJours(new DateTime("Now"),(new DateTime("2021-11-20"))) ;        
-
-        $planning->CreationHeures(new DateTime("2021-06-12 08:00:00"),(new DateTime("2021-11-11 18:00:00"))) ;        
+        $entityManager = $this->getDoctrine()->getManager();
+        $user = $entityManager->getRepository(ProfessionnelDeSante::class)->find($id);
+        $user->CreationDesJours(new DateTime("Now"),(new DateTime("2021-12-15"))) ;        
+        $user->CreationDesheures(new DateTime("2021-07-12 08:00:00"),(new DateTime("2021-07-12 18:00:00"))) ;        
 
         return $this->render('calendrier/index.html.twig', [ 
-            'lesjours' => $planning->getLesjours(),
-            'lesheures' => $planning->getLesheures(),
+            'lesjours' => $user->getLesjours(),
+            'lesheures' => $user->getLesheures(),
+            'controller_name' => 'CalendrierController',
 
-            
         ]);
     }
 }

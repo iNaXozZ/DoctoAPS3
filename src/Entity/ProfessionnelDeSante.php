@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProfessionnelDeSanteRepository;
+use DateInterval;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -17,7 +19,7 @@ class ProfessionnelDeSante extends User
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -55,6 +57,16 @@ class ProfessionnelDeSante extends User
      * @ORM\ManyToMany(targetEntity=Langue::class, inversedBy="lesProfessionnels",cascade={"persist"})
      */
     private $lesLangues;
+
+   
+    private $lesjours = [];
+
+    
+    private $lesheures = [];
+
+    
+
+    
 
     public function __construct()
     {
@@ -219,5 +231,54 @@ class ProfessionnelDeSante extends User
         $this->lesLangues->removeElement($lesLangue);
 
         return $this;
+    }
+
+    public function getLesJours(): ?array
+    {
+        return $this->lesjours;
+    }
+
+    public function setLesJours(array $lesJours): self
+    {
+        $this->lesjours = $lesJours;
+
+        return $this;
+    }
+
+    public function getLesHeures(): ?array
+    {
+        return $this->lesheures;
+    }
+
+    public function setLesHeures(array $lesHeures): self
+    {
+        $this->lesheures = $lesHeures;
+
+        return $this;
+    }
+    public function CreationDesJours(DateTime $param, DateTime $param2)
+    {
+        $diff = date_diff($param,$param2);
+
+        $arraypro= array();
+        for ($i = 1; $i <= $diff->format('%a')+1; $i++) {
+            $date = new DateTime(date_format($param->add(new DateInterval('P1D')),'y-m-d'));   
+            $arraypro[] = $date ;
+        }
+        $this->setLesjours($arraypro);
+
+    }
+
+    public function CreationDesheures(DateTime $param, DateTime $param2)
+    {
+        $diff = date_diff($param,$param2);
+
+        $arraypro= array();
+        for ($i = 1; $i <= $diff->format('%h')+1; $i++) {
+            $date = new DateTime(date_format($param->add(new DateInterval('PT1H')),'H:i:s'));   
+            $arraypro[] = $date ;
+        }
+        $this->setLesheures($arraypro);
+
     }
 }

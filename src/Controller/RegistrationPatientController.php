@@ -19,6 +19,7 @@ class RegistrationPatientController extends AbstractController
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
     {
         $user = new Patient();
+        // Affectation du Rôle "Role_PATIENT" dans la BDD automatiquement lorsque l'on souscrit à un formulaire d'inscription d'un patient
         $user->setRoles(['ROLE_PATIENT']);
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);

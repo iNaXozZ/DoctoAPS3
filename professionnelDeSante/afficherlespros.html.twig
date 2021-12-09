@@ -1,0 +1,35 @@
+{% extends 'security/authentificationReussie.html.twig' %}
+
+{% block title %}Liste Pro{% endblock %}
+
+{% block body %}
+<br>
+<h2><center>Liste des professionnels de santé</center></h2>
+<br>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Nom</th>
+      <th scope="col">Prenom</th>
+      <th scope="col">Sexe</th>
+      <th scope="col">Numéro de téléphone</th>
+      <th scope="col">Type de profession</th>
+      <th scope="col">Présentation</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for unprofessionnel in lesprofessionnels %}
+    <tr>
+      <td>{{ unprofessionnel.getNom() }}</td>
+      <td>{{ unprofessionnel.getPrenom() }}</td>
+      <td>{{ unprofessionnel.getSexe() }}</td>
+      <td>{{ unprofessionnel.getNumeroTelephone() }}</td>
+      <td>{{ unprofessionnel.getTypeProfession() }}</td>
+      <td>{{ unprofessionnel.getPresentation() }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}
+

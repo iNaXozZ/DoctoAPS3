@@ -20,7 +20,8 @@ class RegistrationProfessionnelDeSanteController extends AbstractController
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
     {
         $user = new ProfessionnelDeSante();
-        $user->setRoles(['ROLE_PRO']);
+        // Affectation du Rôle "Role_Pro" dans la BDD automatiquement lorsque l'on souscrit à un formulaire d'inscription Pro
+        $user->setRoles(['ROLE_PRO']); 
         $form = $this->createForm(RegistrationProFormType::class, $user);
         $form->handleRequest($request);
 

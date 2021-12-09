@@ -35,9 +35,7 @@ class RegistrationProFormType extends AbstractType
             ->add('lesLangues', EntityType::class, array(  
                 'class'=>Langue::class,
                 'choice_label' =>'libelleLangue',
-                'multiple'=>true,
-                
-                ))
+                'multiple'=>true, ))
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [

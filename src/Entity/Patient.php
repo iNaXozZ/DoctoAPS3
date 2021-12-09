@@ -17,7 +17,7 @@ class Patient extends User
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\OneToMany(targetEntity=Consultation::class, mappedBy="lePatient")
