@@ -1,0 +1,36 @@
+{% extends 'security/authentificationReussie.html.twig' %}
+
+{% block title %}Liste Pro{% endblock %}
+
+{% block body %}
+<br>
+<h2><center>Liste des professionnels de santé</center></h2>
+<br>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Nom du patient</th>
+      <th scope="col">Prenom du patient</th>
+      <th scope="col">Sexe</th>
+      <th scope="col">Type de consultation</th>
+      <th scope="col">Motif de la consultation</th>
+      <th scope="col">Tarif de la consultation</th>
+      <th scope="col">Moyen de paiement</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for uneconsultation in lesconsultations %}
+    <tr>
+      <td>{{ uneconsultation.getLePatient().getNom() }}</td>
+      <td>{{ uneconsultation.getLePatient().getPrenom() }}</td>
+      <td>{{ uneconsultation.getLePatient().getSexe() }}</td>
+      <td>{{ uneconsultation.getTypeConsultation() }}</td>
+      <td>{{ uneconsultation.getMotifConsultation() }}</td>
+      <td>{{ uneconsultation.getTarifConsultation() }}</td>
+      <td>{{ uneconsultation.getLeMoyenPaiement().getLibellePaiement }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}
