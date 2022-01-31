@@ -30,11 +30,14 @@ class ConsultationController extends AbstractController
         $user = $this->security->getUser();
         $consultation= new Consultation();
         $consultation->setTarifConsultation('25€');
+        
         //Affectation de l'id de l'utilisateur courant à la variable lePatient pour identifier le patient courant 
         $consultation->setLePatient($user);
         $form = $this->createForm(ConsultationFormType::class, $consultation);
         $form->handleRequest($request);
+        
         if ($form->isSubmitted() && $form->isValid()) {
+            //$consultation->setLEtablissement($request->get);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($consultation);
             $entityManager->flush();

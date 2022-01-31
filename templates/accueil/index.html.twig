@@ -14,4 +14,35 @@
         {% endblock %}
 {% block body %}
 <h2><center>Bienvenue sur l'acceuil DoctoAPS3<center></h2>
+<br>
+<div class="card">
+  <div class="card-header">
+    Se connecter
+  </div>
+  <div class="card-body">
+    <p class="card-text">Connectez-vous, c'est ici !</p>
+    <a href="{{path('app_login')}}" class="btn btn-primary">Se connecter</a>
+  </div>
+</div>
+<div class="card">
+  <div class="card-header">
+    Inscription Patient
+  </div>
+  <div class="card-body">
+    <p class="card-text">Vous cherchez un médecin pour un rendez-vous? inscrivez-vous !</p>
+    <a href="{{path('register_patient')}}" class="btn btn-primary">lien vers l'inscription d'un patient</a>
+  </div>
+</div>
+<br>
+<div class="card">
+  <div class="card-header">
+    Inscription Professionnelle
+  </div>
+  <div class="card-body">
+    <p class="card-text">Vous êtes un professionnel et vous cherchez à vous inscrire à notre plateforme? C'est par ici !</p>
+    <a href="{{path('register_pro')}}" class="btn btn-primary">Lien vers l'inscription d'un professionnel</a>
+  </div>
+</div>
+<br>
+
 {% endblock %}

@@ -26,7 +26,7 @@ class CalendrierController extends AbstractController
     {
         $entityManager = $this->getDoctrine()->getManager();
         $user = $entityManager->getRepository(ProfessionnelDeSante::class)->find($id);
-        $user->CreationDesJours(new DateTime("Now"),(new DateTime("2021-12-15"))) ;        
+        $user->CreationDesJours(new DateTime("Now"),(new DateTime("2021-12-24"))) ;        
         $user->CreationDesheures(new DateTime("2021-07-12 08:00:00"),(new DateTime("2021-07-12 18:00:00"))) ;        
 
         return $this->render('calendrier/index.html.twig', [ 
